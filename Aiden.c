@@ -56,79 +56,86 @@ char greeting[] = "Hello, I'm Aiden - Andrew's car. \n \nCaught you by surprise,
 //char richmix[]="*Coughs* I'm getting too much fuel, please tweak my map."
 
 //char overboost[]="I'm having fun too, but please check my boost level. Something feels odd here."
-//char knock[]="Something hurts, I don't think that's good."
+//char knock[]="Something hurts, I don't think that's good." 
 
 
 //todo: define types for functions
 void checkTime(){
-	//FUNCTION VARIABLES, caps so your blind ass can see them
-	char buffer[SIZE];//buffer for output
-	time_t curtime;//current time
-	struct tm *loctime;//struct that converts time to local time representation using time.h
+  //FUNCTION VARIABLES, caps so your blind ass can see them
+  char buffer[SIZE];//buffer for output
+  time_t curtime;//current time
+  struct tm *loctime;//struct that converts time to local time representation using time.h
 
-	/* Get the current time. */
-	curtime = time (NULL);
+  /* Get the current time. */
+  curtime = time (NULL);
+}
 
-	/* Convert it to local time representation. */
-	loctime = localtime (&curtime);
+void printTime(){
+  char buffer[SIZE];//buffer for output
+  time_t curtime;//current time
+  struct tm *loctime;//struct that converts time to local time representation using time.h
 
-	/* Print out the date and time in the standard format. */
-	//fputs (asctime (loctime), stdout);
-	/*Print out raw time*/
-	printf("Raw time converted to long long is: %lld\n", (long long) curtime);
+  /* Convert it to local time representation. */
+  loctime = localtime (&curtime);
 
-	/* Print it out in a nice format. */
-	strftime (buffer, SIZE, "Today is %A, %B %d", loctime);
-	fputs (buffer, stdout);
-	strftime (buffer, SIZE, " and the time is %I:%M %p.\n", loctime);
-	fputs (buffer, stdout);
-	
-	//flush output to keep things clean
-	fflush(stdout);
-	
+  /* Print out the date and time in the standard format. */
+  //fputs (asctime (loctime), stdout);
+  /*Print out raw time*/
+  printf("Raw time converted to long long is: %lld\n", (long long) curtime);
+
+  /* Print it out in a nice format. */
+  strftime (buffer, SIZE, "Today is %A, %B %d", loctime);
+  fputs (buffer, stdout);
+  strftime (buffer, SIZE, " and the time is %I:%M %p.\n", loctime);
+  fputs (buffer, stdout);
+  
+  //flush output to keep things clean
+  fflush(stdout);
+  
+
 }
 
 
-
 //checkForFirstBoot(){
-//check for first boot of the day
+	//check for first boot of the day
 //}
 
 //calculateAverageTripSpeed(){
-//calculate average trip speed
+	//calculate average trip speed
 //}
 //checkForShutDown(){
-//check for shutdown conditions
+	//check for shutdown conditions
 //}
 //checkFuel(){
-//check fuel level
+	//check fuel level
 //}
 
 //checkBoost(){
-//check boost level
+	//check boost level
 //}
 
 //checkForKnock(){
-//check for knock
-//}
+	//check for knock
+//} 
 
 //checkForEngineTemp(){
-//check for engine temp
+	//check for engine temp
 //}
 
 //checkForMixture(){
-//check for mixture
+	//check for mixture
 //}
 
 //checkForEGT(){
-//check for EGT
+	//check for EGT
 //}
 
 
 int main(){
-	//int main(int argc, char *argv[]){
+//int main(int argc, char *argv[]){
 	printf("%s\n", greeting);
 	checkTime();
+	//printTime();
 	return 0;
 }
 
