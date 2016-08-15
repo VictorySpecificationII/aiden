@@ -19,14 +19,14 @@ void do_idle_to_interacting(instance_data_t *data);
 
 //declaring state and data to be used in state
 state_t do_state_initial(instance_data_t *data);
-state_t do_state_sleeping(instance_data_t *data)
+state_t do_state_sleeping(instance_data_t *data);
 state_t do_state_awake(instance_data_t *data);
 state_t do_state_monitoring(instance_data_t *data);
 state_t do_state_idle(instance_data_t *data);
 state_t do_state_interacting(instance_data_t *data);
 
 //state table declaration
-state_func_t * const state_table[NUM_STATES]={
+state_func_t* const state_table[NUM_STATES]={
 	do_state_initial, do_state_sleeping, do_state_awake, do_state_idle, do_state_monitoring, do_state_interacting
 };
 
@@ -41,27 +41,30 @@ transition_func_t * const transition_table[NUM_STATES][NUM_STATES]={
 	{do_state_idle, do_state_monitoring},
 	{do_state_idle, do_state_interacting},
 	{do_state_monitoring, do_state_idle},
-	{do_state_interacting, do_state_idle},
+	{do_state_interacting, do_state_idle}
 	
 };
 
 //function to run state with data needed for state to run
-state_t run_state(state_t cur_state, instance_data_t *data){
-	state_t new_state = state_table[cur_state](data);
-	transition_func_t *transition = transition_table[cur_state][new_state];
-	if(transition){
-		transition(data);
-	}
+state_t run_state( state_t cur_state, instance_data_t *data ) {
+    state_t new_state = state_table[ cur_state ]( data );
+    transition_func_t *transition =
+               transition_table[ cur_state ][ new_state ];
 
-	return new_state;
-}
+    if ( transition ) {
+        transition( data );
+    }
 
-int main(void){
-	state_t cur_state = STATE_INITIAL;
-	instance_data_t data;
+    return new_state;
+};
 
-	while(1){
-		cur_state = run_state(cur_state, &data);
-		//do other program logic, run other state machines etc
-	}
+int main( void ) {
+    state_t cur_state = STATE_INITIAL;
+    instance_data_t data;
+
+    while ( 1 ) {
+        cur_state = run_state( cur_state, &data );
+
+        // do other program logic, run other state machines, etc
+    }
 }
