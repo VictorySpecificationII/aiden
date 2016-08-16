@@ -71,6 +71,12 @@ char richmix[]="*Coughs* I'm getting too much fuel, please tweak my map."
 char overboost[]="I'm having fun too, but please check my boost level. Something feels odd here."
 char knock[]="Something hurts, I don't think that's good." 
 
+char highVoltage[]=""
+char lowVoltage[]=""
+
+char highAmperage[]=""
+char lowAmperage[]=""
+
 
 //todo: define types for functions
 void checkTime(){
@@ -140,6 +146,14 @@ void printTime(){
 
 //checkForEGT(){
 	//check for EGT
+//}
+
+//checkForVoltage(){
+	//check for voltage
+//}
+
+//checkForAmperage(){
+	//check for amperage	
 //}
 
 
