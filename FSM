@@ -34,7 +34,7 @@ void do_idle_to_awake(instance_data_t *data){};
 void do_awake_to_idle(instance_data_t *data){};
 void do_idle_to_monitoring(instance_data_t *data){};
 void do_idle_to_interacting(instance_data_t *data){};
-void do_idle_to_exit(instance_data_t *data){};
+void do_sleep_to_exit(instance_data_t *data){};
 
 
 //declaring state and data to be used in state
@@ -49,19 +49,25 @@ state_t do_state_exit(instance_data_t *data){};
 
 //state table declaration
 state_func_t* const state_table[NUM_STATES]={
-	do_state_entry, do_state_sleeping, do_state_awake, do_state_idle, do_state_monitoring, do_state_interacting
+	do_state_entry, do_state_sleeping, do_state_awake, do_state_idle, do_state_monitoring, do_state_interacting, do_state_exit
 };
 
 //transition table declaration
 
 transition_func_t * const transition_table[NUM_STATES][NUM_STATES]={
+	
 	{do_state_entry, do_state_sleeping},
+	{do_state_sleeping, do_state_exit},
+	
 	{do_state_sleeping, do_state_awake},
 	{do_state_awake, do_state_sleeping},
+	
 	{do_state_awake, do_state_idle},
 	{do_state_idle, do_state_awake},
+	
 	{do_state_idle, do_state_monitoring},
 	{do_state_idle, do_state_interacting},
+	
 	{do_state_monitoring, do_state_idle},
 	{do_state_interacting, do_state_idle}
 	
