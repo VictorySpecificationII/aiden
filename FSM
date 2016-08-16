@@ -19,6 +19,7 @@ struct instance_data {
 	int firstBoot;
 	int boot;
 	int shutDown;
+	char[] msg;
 };
 
 //declaring state type
