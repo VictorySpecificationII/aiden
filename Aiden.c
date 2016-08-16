@@ -8,22 +8,34 @@
 //On boot: If not first boot of the day, do not use certain responses only meant for first boot.
 
 //States:
+//Entry
 //Sleeping
 //Idle
 //Awake
 //Monitoring
 //Interacting
+//Exit
 
 //State Transitions:
+//Entry -> Sleeping
 //Sleeping -> Awake(Key turn)
 //Awake -> Sleeping(Key turn)
 
 //Monitoring -> Idle
 //Interacting -> Idle
+//Idle -> Exit
 
 //Cycle:
-//Sleeping -> Awake -> Monitoring <-> Idle <-> Interacting
-//Idle -> Sleeping
+//												   Exit
+//													^
+//      											|
+//		           			________________________|                   
+//              			|    |                  |
+//          			   \ /   |                  |
+//   Entry -> Sleeping <-> Awake | Interacting <-> Idle <-> Monitoring
+//							|	 |					^
+//							|____|__________________|
+
 #include <stdio.h>
 #include <time.h>
 
@@ -62,7 +74,6 @@ char greeting[] = "Hello, I'm Aiden - Andrew's car. \n \nCaught you by surprise,
 //todo: define types for functions
 void checkTime(){
   //FUNCTION VARIABLES, caps so your blind ass can see them
-  char buffer[SIZE];//buffer for output
   time_t curtime;//current time
   struct tm *loctime;//struct that converts time to local time representation using time.h
 
@@ -135,7 +146,7 @@ int main(){
 //int main(int argc, char *argv[]){
 	printf("%s\n", greeting);
 	checkTime();
-	//printTime();
+	printTime();
 	return 0;
 }
 
