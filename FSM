@@ -27,25 +27,52 @@ typedef state_t state_func_t(instance_data_t *data);
 typedef void transition_func_t(instance_data_t *data);
 
 //declare transaction functions
-void do_initial_to_sleeping(instance_data_t *data){};
-void do_sleeping_to_awake(instance_data_t *data){};
-void do_awake_to_sleeping(instance_data_t *data){};
-void do_idle_to_awake(instance_data_t *data){};
-void do_awake_to_idle(instance_data_t *data){};
-void do_idle_to_monitoring(instance_data_t *data){};
-void do_idle_to_interacting(instance_data_t *data){};
-void do_sleep_to_exit(instance_data_t *data){};
+void do_initial_to_sleeping(instance_data_t *data);
+void do_sleeping_to_awake(instance_data_t *data);
+void do_awake_to_sleeping(instance_data_t *data);
+void do_idle_to_awake(instance_data_t *data);
+void do_awake_to_idle(instance_data_t *data);
+void do_idle_to_monitoring(instance_data_t *data);
+void do_idle_to_interacting(instance_data_t *data);
+void do_sleep_to_exit(instance_data_t *data);
 
 
 //declaring state and data to be used in state
-state_t do_state_entry(instance_data_t *data){};
-state_t do_state_sleeping(instance_data_t *data){};
-state_t do_state_awake(instance_data_t *data){};
-state_t do_state_monitoring(instance_data_t *data){};
-state_t do_state_idle(instance_data_t *data){};
-state_t do_state_interacting(instance_data_t *data){};
-state_t do_state_exit(instance_data_t *data){};
+state_t do_state_entry(instance_data_t *data);
+state_t do_state_sleeping(instance_data_t *data);
+state_t do_state_awake(instance_data_t *data);
+state_t do_state_monitoring(instance_data_t *data);
+state_t do_state_idle(instance_data_t *data);
+state_t do_state_interacting(instance_data_t *data);
+state_t do_state_exit(instance_data_t *data);
 
+//------------------------STATE FUNCTIONALITY BELOW------------------------//
+//TODO: add functionality here
+state_t do_state_entry(instance_data_t *data){
+
+}
+
+state_t do_state_sleeping(instance_data_t *data){
+
+}
+state_t do_state_awake(instance_data_t *data){
+
+}
+state_t do_state_monitoring(instance_data_t *data){
+
+}
+state_t do_state_idle(instance_data_t *data){
+
+}
+state_t do_state_interacting(instance_data_t *data){
+
+}
+state_t do_state_exit(instance_data_t *data){
+
+}
+
+
+//------------------------STATE FUNCTIONALITY ABOVE------------------------//
 
 //state table declaration
 state_func_t* const state_table[NUM_STATES]={
