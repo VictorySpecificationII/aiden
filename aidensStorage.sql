@@ -17,8 +17,10 @@ ID Integer PRIMARY KEY AUTOINCREMENT,
 CREATE TABLE IF NOT EXISTS sentences
 (
 ID Integer PRIMARY KEY AUTOINCREMENT,
+tag char(64) NOT NULL
 sentence char(512) NOT NULL
 
 ) 
 
 INSERT INTO handlers (handle, passwd) VALUES ("", "")
+INSERT INTO sentences (sentence) VALUES ("")
