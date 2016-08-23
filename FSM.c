@@ -6,7 +6,7 @@ file and #include it in each source file. This is because the action
 procedures need to update current_state, and so need access to the state
 definitions. */
 
-enum states { STATE_1, STATE_2, STATE_3, STATE_4, STATE_5 MAX_STATES } current_state;
+enum states { STATE_1, STATE_2, STATE_3, STATE_4, STATE_5, MAX_STATES } current_state;
 enum events { EVENT_1, EVENT_2, MAX_EVENTS } new_event;
 
 /* Provide the fuction prototypes for each action procedure. In a real
@@ -55,7 +55,7 @@ void (*const state_table [MAX_STATES][MAX_EVENTS]) (void) = {
 
     { action_s1_e1, action_s1_e2 }, /* procedures for state 1 */
     { action_s2_e1, action_s2_e2 }, /* procedures for state 2 */
-    { action_s3_e1, action_s3_e2 }  /* procedures for state 3 */
+    { action_s3_e1, action_s3_e2 },  /* procedures for state 3 */
     { action_s4_e1, action_s4_e2 }, /* procedures for state 4 */
     { action_s5_e1, action_s5_e2 }  /* procedures for state 5 */
 };
