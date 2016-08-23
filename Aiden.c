@@ -9,32 +9,21 @@
 
 //States:
 //Entry
-//Sleeping
 //Idle
-//Awake
 //Monitoring
 //Interacting
 //Exit
 
+//Entry and Exit states do have functionality - Entry loads up the database among other things, exit saves everything then exits
+
 //State Transitions:
-//Entry -> Sleeping(Key turn, boot)
-//Sleeping -> Awake(post-boot)
-//Awake -> Sleeping(Program does not terminate)
-//Sleep -> Exit(Program terminates)
+//Entry -> Idle(Key turn, boot)
 
-//Monitoring -> Idle
-//Interacting -> Idle
+//Monitoring <-> Idle
+//Interacting <-> Idle
 
-//Cycle:
-//		          Exit
-//				   ^
-//      		   |									
-//		           |		________________________                   
-//                 |		|    |                  |
-//          	   |	   \ /   |                  |
-//   Entry -> Sleeping <-> Awake | Interacting <-> Idle <-> Monitoring
-//							|	 |					^
-//							|____|__________________|
+//Idle -> Exit(Program terminates)
+
 
 #include <stdio.h>
 #include <time.h>

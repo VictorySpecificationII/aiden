@@ -6,7 +6,7 @@ file and #include it in each source file. This is because the action
 procedures need to update current_state, and so need access to the state
 definitions. */
 
-enum states { STATE_1, STATE_2, STATE_3, MAX_STATES } current_state;
+enum states { STATE_1, STATE_2, STATE_3, STATE_4, STATE_5 MAX_STATES } current_state;
 enum events { EVENT_1, EVENT_2, MAX_EVENTS } new_event;
 
 /* Provide the fuction prototypes for each action procedure. In a real
@@ -17,10 +17,33 @@ of listing the prototypes here, you would just #include the .h files. */
 
 void action_s1_e1 (void);
 void action_s1_e2 (void);
+
 void action_s2_e1 (void);
 void action_s2_e2 (void);
+
 void action_s3_e1 (void);
 void action_s3_e2 (void);
+
+void action_s4_e1 (void);
+void action_s4_e2 (void);
+
+void action_s5_e1 (void);
+void action_s5_e2 (void);
+
+/*
+void checkForFirstBoot (void);
+void calculateAverageTripSpeed (void);
+void checkForShutDown (void);
+void checkFuel (void);
+void checkBoost (void);
+void checkForKnock (void);
+void checkForMixture (void);
+void checkForEGT (void);
+void checkForVoltage (void);
+void checkForAmperage (void);
+*/
+
+
 enum events get_new_event (void);
 
 /* Define the state/event lookup table. The state/event order must be the
@@ -33,6 +56,8 @@ void (*const state_table [MAX_STATES][MAX_EVENTS]) (void) = {
     { action_s1_e1, action_s1_e2 }, /* procedures for state 1 */
     { action_s2_e1, action_s2_e2 }, /* procedures for state 2 */
     { action_s3_e1, action_s3_e2 }  /* procedures for state 3 */
+    { action_s4_e1, action_s4_e2 }, /* procedures for state 4 */
+    { action_s5_e1, action_s5_e2 }  /* procedures for state 5 */
 };
 
 /* This is the heart of the state machine - where you execute the proper 
@@ -65,7 +90,7 @@ void action_s1_e1 (void)
 {
     /* do some processing here */
 
-char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
+   char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
    printf("Greeting message: %s\n", greeting );
 
     current_state = STATE_2; /* set new state, if necessary */
@@ -76,6 +101,56 @@ void action_s2_e1 (void) {}
 void action_s2_e2 (void) {}
 void action_s3_e1 (void) {}
 void action_s3_e2 (void) {}
+void action_s4_e1 (void) {}
+void action_s4_e2 (void) {}
+void action_s5_e1 (void) {}
+void action_s5_e2 (void) {}
+
+/*
+void action_checkForFirstBoot (void){
+    //check for first boot of the day
+}
+
+void action_calculateAverageTripSpeed (void){
+    //calculate average trip speed
+}
+void action_checkForShutDown (void){
+    //check for shutdown conditions
+}
+void action_checkFuel (void){
+    //check fuel level
+}
+
+void action_checkBoost (void){
+    //check boost level
+}
+
+void action_checkForKnock (void){
+    //check for knock
+} 
+
+void action_checkForEngineTemp (void){
+    //check for engine temp
+}
+
+void action_checkForMixture (void){
+    //check for mixture
+}
+
+void action_checkForEGT (void){
+    //check for EGT
+}
+
+void action_checkForVoltage (void){
+    //check for voltage
+}
+
+void action_checkForAmperage (void){
+    //check for amperage    
+}
+*/
+
+
 
 /* Return the next event to process - how this works depends on your
 application. */
