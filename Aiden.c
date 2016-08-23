@@ -17,13 +17,37 @@
 //Entry and Exit states do have functionality - Entry loads up the database among other things, exit saves everything then exits
 
 //State Transitions:
-//Entry -> Idle(Key turn, boot)
+//Entry -> Interacting(Key turn, boot)
 
 //Monitoring <-> Idle
 //Interacting <-> Idle
 
 //Idle -> Exit(Program terminates)
 
+
+//Events during states
+//--------------------------
+
+//Entry
+//Load database
+//Check for first boot
+
+//-----------------------------LOOP----------------------------//
+//Idle
+//If came from entry, go to interact for message
+//While idle, keep monitoring
+//Check if ignition key off
+//If ignition key off, interact with user, save logs and exit
+
+//Monitoring
+//scan inputs
+//if any parameters off, go to interacting state
+
+//Interacting
+//choose response from database 
+//interact with user
+//go to idle state
+//-----------------------------LOOP----------------------------//
 
 #include <stdio.h>
 #include <time.h>
@@ -59,12 +83,6 @@ char richmix[]="*Coughs* I'm getting too much fuel, please tweak my map."
 
 char overboost[]="I'm having fun too, but please check my boost level. Something feels odd here."
 char knock[]="Something hurts, I don't think that's good." 
-
-char highVoltage[]=""
-char lowVoltage[]=""
-
-char highAmperage[]=""
-char lowAmperage[]=""
 
 
 //todo: define types for functions
@@ -135,14 +153,6 @@ void printTime(){
 
 //checkForEGT(){
 	//check for EGT
-//}
-
-//checkForVoltage(){
-	//check for voltage
-//}
-
-//checkForAmperage(){
-	//check for amperage	
 //}
 
 

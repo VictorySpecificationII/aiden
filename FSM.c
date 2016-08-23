@@ -6,6 +6,8 @@ file and #include it in each source file. This is because the action
 procedures need to update current_state, and so need access to the state
 definitions. */
 
+//            STATE    STATE    STATE    STATE    STATE  
+//            ENTRY    IDLE     MONITOR  INTERACT EXIT
 enum states { STATE_1, STATE_2, STATE_3, STATE_4, STATE_5, MAX_STATES } current_state;
 enum events { EVENT_1, EVENT_2, MAX_EVENTS } new_event;
 
@@ -33,15 +35,19 @@ void action_s5_e2 (void);
 /*
 void checkForFirstBoot (void);
 void calculateAverageTripSpeed (void);
+
 void checkForShutDown (void);
 void checkFuel (void);
+
 void checkBoost (void);
 void checkForKnock (void);
+
+void checkForEngineTemp(void);
 void checkForMixture (void);
+
 void checkForEGT (void);
-void checkForVoltage (void);
-void checkForAmperage (void);
 */
+
 
 
 enum events get_new_event (void);
@@ -106,6 +112,9 @@ void action_s4_e2 (void) {}
 void action_s5_e1 (void) {}
 void action_s5_e2 (void) {}
 
+
+
+
 /*
 void action_checkForFirstBoot (void){
     //check for first boot of the day
@@ -141,13 +150,6 @@ void action_checkForEGT (void){
     //check for EGT
 }
 
-void action_checkForVoltage (void){
-    //check for voltage
-}
-
-void action_checkForAmperage (void){
-    //check for amperage    
-}
 */
 
 
