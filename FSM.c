@@ -1,158 +1,86 @@
-//enumerating states
-typedef enum {STATE_ENTRY, STATE_SLEEPING, STATE_AWAKE, STATE_MONITORING, STATE_IDLE, STATE_INTERACTING, STATE_EXIT, NUM_STATES} state_t;
+#include <stdio.h>
 
-//enumerating process codes
-//typedef enum {STATE_CHANGE_OK, STATE_CHANGE_FAILED, STATE_REPEATED} state_status_t;
+/* Define the states and events. If your state machine program has multiple
+source files, you would probably want to put these definitions in an "include"
+file and #include it in each source file. This is because the action
+procedures need to update current_state, and so need access to the state
+definitions. */
 
-//declaring instance data structure
-typedef struct instance_data instance_data_t;
+enum states { STATE_1, STATE_2, STATE_3, MAX_STATES } current_state;
+enum events { EVENT_1, EVENT_2, MAX_EVENTS } new_event;
 
-//declaring struct
-struct instance_data {
-	double fuel;
-	double temp;
-	double EGT;
-	int knock;
-	double AFR;
-	double boost;
-	double tripAvgSpeed;
-	int firstBoot;
-	int boot;
-	int shutDown;
-	char[] msg;
+/* Provide the fuction prototypes for each action procedure. In a real
+program, you might have a separate source file for the action procedures of 
+each state. Then you could create a .h file for each of the source files, 
+and put the function prototypes for the source file in the .h file. Instead 
+of listing the prototypes here, you would just #include the .h files. */
+
+void action_s1_e1 (void);
+void action_s1_e2 (void);
+void action_s2_e1 (void);
+void action_s2_e2 (void);
+void action_s3_e1 (void);
+void action_s3_e2 (void);
+enum events get_new_event (void);
+
+/* Define the state/event lookup table. The state/event order must be the
+same as the enum definitions. Also, the arrays must be completely filled - 
+don't leave out any events/states. If a particular event should be ignored in 
+a particular state, just call a "do-nothing" function. */
+
+void (*const state_table [MAX_STATES][MAX_EVENTS]) (void) = {
+
+    { action_s1_e1, action_s1_e2 }, /* procedures for state 1 */
+    { action_s2_e1, action_s2_e2 }, /* procedures for state 2 */
+    { action_s3_e1, action_s3_e2 }  /* procedures for state 3 */
 };
 
-//declaring state type
-typedef state_t state_func_t(instance_data_t *data);
-//declaring transaction type
-typedef void transition_func_t(instance_data_t *data);
+/* This is the heart of the state machine - where you execute the proper 
+action procedure based on the new event you have to process and your current 
+state. It's important to make sure the new event and current state are 
+valid, because unlike "switch" statements, the lookup table method has no 
+"default" case to catch out-of-range values. With a lookup table, 
+out-of-range values cause the program to crash! */
 
-//declare transaction functions
-void do_initial_to_sleeping(instance_data_t *data);
-void do_sleeping_to_awake(instance_data_t *data);
-void do_awake_to_sleeping(instance_data_t *data);
-void do_idle_to_awake(instance_data_t *data);
-void do_awake_to_idle(instance_data_t *data);
-void do_idle_to_monitoring(instance_data_t *data);
-void do_idle_to_interacting(instance_data_t *data);
-void do_sleep_to_exit(instance_data_t *data);
+void main (void)
+{
+    new_event = get_new_event (); /* get the next event to process */
 
+    if (((new_event >= 0) && (new_event < MAX_EVENTS))
+    && ((current_state >= 0) && (current_state < MAX_STATES))) {
 
-//declaring state and data to be used in state
-state_t do_state_entry(instance_data_t *data);
-state_t do_state_sleeping(instance_data_t *data);
-state_t do_state_awake(instance_data_t *data);
-state_t do_state_monitoring(instance_data_t *data);
-state_t do_state_idle(instance_data_t *data);
-state_t do_state_interacting(instance_data_t *data);
-state_t do_state_exit(instance_data_t *data);
+        state_table [current_state][new_event] (); /* call the action procedure */
 
-//------------------------STATE TRANSITION FUNCTIONALITY BELOW------------------------//
+    } else {
 
-void do_initial_to_sleeping(instance_data_t *data){
-
-}
-void do_sleeping_to_awake(instance_data_t *data){
-
-}
-void do_awake_to_sleeping(instance_data_t *data){
-
-}
-void do_idle_to_awake(instance_data_t *data){
-
-}
-void do_awake_to_idle(instance_data_t *data){
-
-}
-void do_idle_to_monitoring(instance_data_t *data){
-
-}
-void do_idle_to_interacting(instance_data_t *data){
-
-}
-void do_sleep_to_exit(instance_data_t *data){
-	
-}
-
-
-//------------------------STATE TRANSITION FUNCTIONALITY ABOVE------------------------//
-
-
-//------------------------STATE FUNCTIONALITY BELOW------------------------//
-//TODO: add functionality here
-state_t do_state_entry(instance_data_t *data){
-
-}
-
-state_t do_state_sleeping(instance_data_t *data){
-
-}
-state_t do_state_awake(instance_data_t *data){
-
-}
-state_t do_state_monitoring(instance_data_t *data){
-
-}
-state_t do_state_idle(instance_data_t *data){
-
-}
-state_t do_state_interacting(instance_data_t *data){
-
-}
-state_t do_state_exit(instance_data_t *data){
-
-}
-
-
-//------------------------STATE FUNCTIONALITY ABOVE------------------------//
-
-//state table declaration
-state_func_t* const state_table[NUM_STATES]={
-	do_state_entry, do_state_sleeping, do_state_awake, do_state_idle, do_state_monitoring, do_state_interacting, do_state_exit
-};
-
-//transition table declaration
-
-transition_func_t * const transition_table[NUM_STATES][NUM_STATES]={
-	
-	{do_state_entry, do_state_sleeping},
-	{do_state_sleeping, do_state_exit},
-	
-	{do_state_sleeping, do_state_awake},
-	{do_state_awake, do_state_sleeping},
-	
-	{do_state_awake, do_state_idle},
-	{do_state_idle, do_state_awake},
-	
-	{do_state_idle, do_state_monitoring},
-	{do_state_idle, do_state_interacting},
-	
-	{do_state_monitoring, do_state_idle},
-	{do_state_interacting, do_state_idle}
-	
-};
-
-//function to run state with data needed for state to run
-state_t run_state( state_t cur_state, instance_data_t *data ) {
-    state_t new_state = state_table[ cur_state ]( data );
-    transition_func_t *transition =
-               transition_table[ cur_state ][ new_state ];
-
-    if ( transition ) {
-        transition( data );
+        /* invalid event/state - handle appropriately */
     }
+}
 
-    return new_state;
-};
+/* In an action procedure, you do whatever processing is required for the
+particular event in the particular state. Among other things, you might have
+to set a new state. */
 
-int main( void ) {
-    state_t cur_state = STATE_ENTRY;
-    instance_data_t data;
+void action_s1_e1 (void)
+{
+    /* do some processing here */
 
-    while ( 1 ) {
-        cur_state = run_state( cur_state, &data );
-        //todo:refer to design file to implement state switching
-        //todo: implement state status codes too!
-        // do other program logic, run other state machines, etc
-    }
+char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
+   printf("Greeting message: %s\n", greeting );
+
+    current_state = STATE_2; /* set new state, if necessary */
+}
+
+void action_s1_e2 (void) {}  /* other action procedures */
+void action_s2_e1 (void) {}
+void action_s2_e2 (void) {}
+void action_s3_e1 (void) {}
+void action_s3_e2 (void) {}
+
+/* Return the next event to process - how this works depends on your
+application. */
+
+enum events get_new_event (void)
+{
+    return EVENT_1;
 }
