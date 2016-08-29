@@ -1,2 +1,2 @@
 # aiden
-Bot written in C for race cars
+Automobile-Human Interaction Experiment
