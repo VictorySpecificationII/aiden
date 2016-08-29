@@ -7,10 +7,8 @@ file and #include it in each source file. This is because the action
 procedures need to update current_state, and so need access to the state
 definitions. */
 
-//            STATE    STATE    STATE    STATE    STATE  
-//            ENTRY    IDLE     MONITOR  INTERACT EXIT
 enum states { STATE_0, STATE_1, STATE_2, MAX_STATES }current_state;
-enum events {  EVENT_0, EVENT_1, EVENT_2, MAX_EVENTS }new_event;
+enum events { EVENT_0, EVENT_1, EVENT_2, MAX_EVENTS }new_event;
 
 
 /* Provide the fuction prototypes for each action procedure. In a real
@@ -54,25 +52,24 @@ void main (void)
 {
         printf("Current state %u\n",current_state);
         printf("Current event %u\n",new_event);
-        printf("--------------------------------\n");
+        printf("---------------\n");
     
 
-    while(current_state < STATE_2){
+    while((current_state < 3)&&(new_event <3)){
+    //while(current_state < STATE_2){ //Original statement, ends at State 2 Event 0
 
-    printf("pre: get_new_event(); %u\n",new_event);
-    new_event = get_new_event (); /* get the next event to process */
-    printf("post: get_new_event(); %u\n",new_event);
-
-    printf("------------------------------------\n");
-
-    printf("current state: %u\n", current_state);
+        
 
     if (((new_event >= 0) && (new_event < MAX_EVENTS))
     && ((current_state >= 0) && (current_state < MAX_STATES))) {
 
         state_table [current_state][new_event] (); /* call the action procedure */
+        
+        new_event = get_new_event (); /* get the next event to process */
 
-    } else {
+    } 
+
+    else {
 
         /* invalid event/state - handle appropriately */
         printf("invalid event/state %u/%u\n",new_event,current_state);
@@ -90,62 +87,62 @@ to set a new state. */
 void action_s0_e0(void)
 {
     printf("action_s0_e0() %u %u\n",current_state,new_event);
-    current_state = STATE_1;
+    //current_state = STATE_0;
 }
 
 void action_s0_e1(void)
 {
     printf("action_s0_e1() %u %u\n",current_state,new_event);
-    current_state = STATE_1;
+    //current_state = STATE_0;
 }
 
 
 void action_s0_e2(void)
 {
     printf("action_s0_e2() %u %u\n",current_state,new_event);
-    current_state = STATE_1;
+    //current_state = STATE_0;
 }
 
 
 void action_s1_e0(void)
 {
     printf("action_s1_e0() %u %u\n",current_state,new_event);
-    current_state = STATE_2;
+    //current_state = STATE_1;
 }
 
 
 void action_s1_e1(void)
 {
     printf("action_s1_e1() %u %u\n",current_state,new_event);
-    current_state = STATE_2;
+    //current_state = STATE_1;
 }
 
 
 void action_s1_e2(void)
 {
     printf("action_s1_e2() %u %u\n",current_state,new_event);
-    current_state = STATE_2;
+    //current_state = STATE_1;
 }
 
 
 void action_s2_e0(void)
 {
     printf("action_s2_e0() %u %u\n",current_state,new_event);
-    current_state = STATE_1;
+    //current_state = STATE_2;
 }
 
 
 void action_s2_e1(void)
 {
     printf("action_s2_e1() %u %u\n",current_state,new_event);
-    current_state = STATE_1;
+    //current_state = STATE_2;
 }
 
 
 void action_s2_e2(void)
 {
     printf("action_s2_e2() %u %u\n",current_state,new_event);
-    current_state = STATE_2;
+    //current_state = STATE_2;
 }
 
 
@@ -155,5 +152,11 @@ application. */
 
 enum events get_new_event (void)
 {
+        if(new_event == 2){
+            new_event = 0;
+            current_state++;
+            return new_event;
+        }
+        else
         return (++new_event);
 }
