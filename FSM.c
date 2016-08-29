@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /* Define the states and events. If your state machine program has multiple
 source files, you would probably want to put these definitions in an "include"
@@ -8,8 +9,9 @@ definitions. */
 
 //            STATE    STATE    STATE    STATE    STATE  
 //            ENTRY    IDLE     MONITOR  INTERACT EXIT
-enum states { STATE_1, STATE_2, STATE_3, STATE_4, STATE_5, MAX_STATES } current_state;
-enum events { EVENT_1, EVENT_2, MAX_EVENTS } new_event;
+enum states { STATE_0, STATE_1, STATE_2, MAX_STATES }current_state;
+enum events {  EVENT_0, EVENT_1, EVENT_2, MAX_EVENTS }new_event;
+
 
 /* Provide the fuction prototypes for each action procedure. In a real
 program, you might have a separate source file for the action procedures of 
@@ -17,38 +19,15 @@ each state. Then you could create a .h file for each of the source files,
 and put the function prototypes for the source file in the .h file. Instead 
 of listing the prototypes here, you would just #include the .h files. */
 
-void action_s1_e1 (void);
-void action_s1_e2 (void);
-
-void action_s2_e1 (void);
-void action_s2_e2 (void);
-
-void action_s3_e1 (void);
-void action_s3_e2 (void);
-
-void action_s4_e1 (void);
-void action_s4_e2 (void);
-
-void action_s5_e1 (void);
-void action_s5_e2 (void);
-
-/*
-void checkForFirstBoot (void);
-void calculateAverageTripSpeed (void);
-
-void checkForShutDown (void);
-void checkFuel (void);
-
-void checkBoost (void);
-void checkForKnock (void);
-
-void checkForEngineTemp(void);
-void checkForMixture (void);
-
-void checkForEGT (void);
-*/
-
-
+void action_s0_e0(void);
+void action_s0_e1(void);
+void action_s0_e2(void);
+void action_s1_e0(void);
+void action_s1_e1(void);
+void action_s1_e2(void);
+void action_s2_e0(void);
+void action_s2_e1(void);
+void action_s2_e2(void);
 
 enum events get_new_event (void);
 
@@ -59,11 +38,9 @@ a particular state, just call a "do-nothing" function. */
 
 void (*const state_table [MAX_STATES][MAX_EVENTS]) (void) = {
 
-    { action_s1_e1, action_s1_e2 }, /* procedures for state 1 */
-    { action_s2_e1, action_s2_e2 }, /* procedures for state 2 */
-    { action_s3_e1, action_s3_e2 },  /* procedures for state 3 */
-    { action_s4_e1, action_s4_e2 }, /* procedures for state 4 */
-    { action_s5_e1, action_s5_e2 }  /* procedures for state 5 */
+    { action_s0_e0, action_s0_e1, action_s0_e2 },
+    { action_s1_e0, action_s1_e1, action_s1_e2 },
+    { action_s2_e0, action_s2_e1, action_s2_e2 }
 };
 
 /* This is the heart of the state machine - where you execute the proper 
@@ -75,7 +52,20 @@ out-of-range values cause the program to crash! */
 
 void main (void)
 {
+        printf("Current state %u\n",current_state);
+        printf("Current event %u\n",new_event);
+        printf("--------------------------------\n");
+    
+
+    while(current_state < STATE_2){
+
+    printf("pre: get_new_event(); %u\n",new_event);
     new_event = get_new_event (); /* get the next event to process */
+    printf("post: get_new_event(); %u\n",new_event);
+
+    printf("------------------------------------\n");
+
+    printf("current state: %u\n", current_state);
 
     if (((new_event >= 0) && (new_event < MAX_EVENTS))
     && ((current_state >= 0) && (current_state < MAX_STATES))) {
@@ -85,72 +75,78 @@ void main (void)
     } else {
 
         /* invalid event/state - handle appropriately */
+        printf("invalid event/state %u/%u\n",new_event,current_state);
+        exit(0);
     }
+}
+    printf("STATE_2, scheduled exit %u %u\n",current_state,new_event);
+    exit(0);
 }
 
 /* In an action procedure, you do whatever processing is required for the
 particular event in the particular state. Among other things, you might have
 to set a new state. */
 
-void action_s1_e1 (void)
+void action_s0_e0(void)
 {
-    /* do some processing here */
-
-   char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
-   printf("Greeting message: %s\n", greeting );
-
-    current_state = STATE_2; /* set new state, if necessary */
+    printf("action_s0_e0() %u %u\n",current_state,new_event);
+    current_state = STATE_1;
 }
 
-void action_s1_e2 (void) {}  /* other action procedures */
-void action_s2_e1 (void) {}
-void action_s2_e2 (void) {}
-void action_s3_e1 (void) {}
-void action_s3_e2 (void) {}
-void action_s4_e1 (void) {}
-void action_s4_e2 (void) {}
-void action_s5_e1 (void) {}
-void action_s5_e2 (void) {}
-
-
-
-
-/*
-void action_checkForFirstBoot (void){
-    //check for first boot of the day
+void action_s0_e1(void)
+{
+    printf("action_s0_e1() %u %u\n",current_state,new_event);
+    current_state = STATE_1;
 }
 
-void action_calculateAverageTripSpeed (void){
-    //calculate average trip speed
-}
-void action_checkForShutDown (void){
-    //check for shutdown conditions
-}
-void action_checkFuel (void){
-    //check fuel level
+
+void action_s0_e2(void)
+{
+    printf("action_s0_e2() %u %u\n",current_state,new_event);
+    current_state = STATE_1;
 }
 
-void action_checkBoost (void){
-    //check boost level
+
+void action_s1_e0(void)
+{
+    printf("action_s1_e0() %u %u\n",current_state,new_event);
+    current_state = STATE_2;
 }
 
-void action_checkForKnock (void){
-    //check for knock
-} 
 
-void action_checkForEngineTemp (void){
-    //check for engine temp
+void action_s1_e1(void)
+{
+    printf("action_s1_e1() %u %u\n",current_state,new_event);
+    current_state = STATE_2;
 }
 
-void action_checkForMixture (void){
-    //check for mixture
+
+void action_s1_e2(void)
+{
+    printf("action_s1_e2() %u %u\n",current_state,new_event);
+    current_state = STATE_2;
 }
 
-void action_checkForEGT (void){
-    //check for EGT
+
+void action_s2_e0(void)
+{
+    printf("action_s2_e0() %u %u\n",current_state,new_event);
+    current_state = STATE_1;
 }
 
-*/
+
+void action_s2_e1(void)
+{
+    printf("action_s2_e1() %u %u\n",current_state,new_event);
+    current_state = STATE_1;
+}
+
+
+void action_s2_e2(void)
+{
+    printf("action_s2_e2() %u %u\n",current_state,new_event);
+    current_state = STATE_2;
+}
 
 
 
@@ -159,5 +155,5 @@ application. */
 
 enum events get_new_event (void)
 {
-    return EVENT_1;
+        return (++new_event);
 }
