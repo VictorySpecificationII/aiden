@@ -44,6 +44,7 @@
 //if any parameters off, go to interacting state
 
 //Interacting
+//get parameters that are off
 //choose response from database 
 //interact with user
 //go to idle state
@@ -72,17 +73,17 @@ char lowfuel[]="I'm hungry... feed meh.";
 char halftank[]="I've digested half my meal. Prepare your wallet soon.";
 char fulltank[]="Yum, feels good. Thank you! \n \n  *burps* \n \n  Whoops!";
 
-char lowenginetemp[]="Time to warm up! Give me five minutes."
-char rightenginetemp[]="That's about right. Time to go?"
+char lowenginetemp[]="Time to warm up! Give me five minutes.";
+char rightenginetemp[]="That's about right. Time to go?";
 char highenginetemp[]="My system is heating up, I need to cool down for a bit.";
 
 char highEGT[]="My exhaust temperatures are high. Check the maps.";
 
-char leanmix[]="I'm scared. I'm running too lean..."
-char richmix[]="*Coughs* I'm getting too much fuel, please tweak my map."
+char leanmix[]="I'm scared. I'm running too lean...";
+char richmix[]="*Coughs* I'm getting too much fuel, please tweak my map.";
 
-char overboost[]="I'm having fun too, but please check my boost level. Something feels odd here."
-char knock[]="Something hurts, I don't think that's good." 
+char overboost[]="I'm having fun too, but please check my boost level. Something feels odd here.";
+char knock[]="Something hurts, I don't think that's good.";
 
 
 //todo: define types for functions
