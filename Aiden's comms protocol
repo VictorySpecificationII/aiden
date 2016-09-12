@@ -1,0 +1,11 @@
+Calling Aiden's name is the gateway to communication - just like a real human.
+There should be an algorithm that decides the response Aiden will give when called, based on time of day, etc.
+There should be 2 types of input;
+
+i)   Commmands
+ii)  Questions
+
+Depending on the command, additional communication (usually in the form of questions by Aiden, or sometimes commands that run on user space - NEVER root) may occur to set ECU/GCU parameters.
+
+Output is dependent on command/question, too many to list here.
+

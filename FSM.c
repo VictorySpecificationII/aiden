@@ -6,8 +6,8 @@ source files, you would probably want to put these definitions in an "include"
 file and #include it in each source file. This is because the action
 procedures need to update current_state, and so need access to the state
 definitions. */
-
-enum states { STATE_0, STATE_1, STATE_2, MAX_STATES }current_state;
+            
+enum states { STATE_0, STATE_1, STATE_2, STATE_3, MAX_STATES }current_state;
 enum events { EVENT_0, EVENT_1, EVENT_2, MAX_EVENTS }new_event;
 
 
@@ -26,6 +26,9 @@ void action_s1_e2(void);
 void action_s2_e0(void);
 void action_s2_e1(void);
 void action_s2_e2(void);
+void action_s3_e0(void);
+void action_s3_e1(void);
+void action_s3_e2(void);
 
 enum events get_new_event (void);
 
@@ -38,7 +41,8 @@ void (*const state_table [MAX_STATES][MAX_EVENTS]) (void) = {
 
     { action_s0_e0, action_s0_e1, action_s0_e2 },
     { action_s1_e0, action_s1_e1, action_s1_e2 },
-    { action_s2_e0, action_s2_e1, action_s2_e2 }
+    { action_s2_e0, action_s2_e1, action_s2_e2 },
+    { action_s3_e0, action_s3_e1, action_s3_e2 }
 };
 
 /* This is the heart of the state machine - where you execute the proper 
@@ -55,7 +59,7 @@ void main (void)
         printf("---------------\n");
     
 
-    while((current_state < 3)&&(new_event <3)){
+    while((current_state < 4)&&(new_event <3)){
     //while(current_state < STATE_2){ //Original statement, ends at State 2 Event 0
 
         
@@ -145,6 +149,19 @@ void action_s2_e2(void)
     //current_state = STATE_2;
 }
 
+void action_s3_e0(void)
+{
+    printf("action_s3_e0() %u %u\n", current_state, new_event);
+}
+
+void action_s3_e1(void)
+{
+    printf("action_s3_e1() %u %u\n", current_state, new_event);
+}
+void action_s3_e2(void)
+{
+    printf("action_s3_e2() %u %u\n", current_state, new_event);
+}
 
 
 /* Return the next event to process - how this works depends on your
