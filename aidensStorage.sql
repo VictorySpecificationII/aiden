@@ -10,8 +10,40 @@ passwd char(128) NOT NULL
 CREATE TABLE IF NOT EXISTS sessions
 (
 ID Integer PRIMARY KEY AUTOINCREMENT,
-handle char(128) NOT NULL
+handler char(128) NOT NULL,
+sessiontype char(24) NOT NULL,
+sessiondate date NOT NULL, 
+sessiontime time NOT NULL,
+sessiondistancetravelled DOUBLE PRECISION NOT NULL,
+sessionavgspeed DOUBLE PRECISION NOT NULL,
+sessionavgcoolanttemp DOUBLE PRECISION NOT NULL,
+sessionduration BIGINT NOT NULL, --UNIX time stamp format, hence the big int type
+sessionfirstboot BIT NOT NULL DEFAULT 0,
+sessionmorningboot BIT NOT NULL DEFAULT 0,
+sessionnoonboot BIT NOT NULL DEFAULT 0,
+sessionafternoonboot BIT NOT NULL DEFAULT 0,
+sessionnightfirstboot BIT NOT NULL DEFAULT 0,
+sessionmidnightfirstboot BIT NOT NULL DEFAULT 0
 
+)
+
+CREATE TABLE IF NOT EXISTS boot 
+(
+ID Integer PRIMARY KEY AUTOINCREMENT,
+handler char(128) NOT NULL,
+boottime time NOT NULL,
+bootdate date NOT NULL,
+firstboot BIT NOT NULL DEFAULT 0
+)
+
+CREATE TABLE IF NOT EXISTS shutdown
+(
+ID Integer PRIMARY KEY AUTOINCREMENT,
+shutdowntime time NOT NULL,
+shutdowndate date NOT NULL,
+shutdownslow BIT NOT NULL DEFAULT 0,
+shutdownfast BIT NOT NULL DEFAULT 0
+--wont add avg speed field as the BIT value t/f is calculated during program, storage only
 )
 
 CREATE TABLE IF NOT EXISTS sentences
@@ -19,14 +51,15 @@ CREATE TABLE IF NOT EXISTS sentences
 ID Integer PRIMARY KEY AUTOINCREMENT,
 tag char(64) NOT NULL
 sentence char(512) NOT NULL
-
 ) 
 
-INSERT INTO handlers (handle, passwd) VALUES ("", "")
+
+							--INSERT STATEMENTS BELOW--
+INSERT INTO handlers (handle, passwd) VALUES ("master", "master")
 
 INSERT INTO sentences (tag, sentence) VALUES ("greeting", "Hello, I'm Aiden - Andrew's car. \n \nCaught you by surprise, didn't it?")
 INSERT INTO sentences (tag, sentence) VALUES ("morningfirstboot", "*Yawns* Hey, good morning. What's the occasion? \n \n Did you bring me a coffee as well?")
-INSERT INTO sentences (tag, sentence) VALUES ("afternoonfirstboot", "*Yawns* what time is it? Damn, spent all day in the sheets again?")
+INSERT INTO sentences (tag, sentence) VALUES ("noonfirstboot", "*Yawns* what time is it? Damn, spent all day in the sheets again?")
 
 INSERT INTO sentences (tag, sentence) VALUES ("afternoonfirstboot", "...and...oh hi! Haven't seen you around all day. \n \n Let's go!")
 
@@ -44,7 +77,7 @@ INSERT INTO sentences (tag, sentence) VALUES ("fulltank", "Yum, feels good. Than
 
 INSERT INTO sentences (tag, sentence) VALUES ("lowenginetemp", "Time to warm up! Give me five minutes.")
 INSERT INTO sentences (tag, sentence) VALUES ("rightenginetemp", "That's about right. Time to go?")
-INSERT INTO sentences (tag, sentence) VALUES ("highenginetemp", "My system is heating up, I need to cool down for a bit.")
+INSERT INTO sentences (tag, sentence) VALUES ("highenginetemp", "My system is heating up, I need to cool down for a BIT.")
 
 INSERT INTO sentences (tag, sentence) VALUES ("highEGT", "My exhaust temperatures are high. Check the maps.")
 

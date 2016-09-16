@@ -7,47 +7,62 @@
 //On boot: If first boot of day, use certain responses for time of day.
 //On boot: If not first boot of the day, do not use certain responses only meant for first boot.
 
-//States:
-//Entry
-//Idle
+//structure equivalent to Arduino's setup() and loop() functions, setup called from inside main in this case
+
+//FSM states
+
+//Entry(from setup)
 //Monitoring
 //Interacting
-//Exit
+//Exit(from loop)
 
 //Entry and Exit states do have functionality - Entry loads up the database among other things, exit saves everything then exits
 
 //State Transitions:
 //Entry -> Interacting(Key turn, boot)
 
-//Monitoring <-> Idle
-//Interacting <-> Idle
+//Monitoring <-> Interacting
 
-//Idle -> Exit(Program terminates)
+//Monitoring -> Exit(Program terminates)
 
 
 //Events during states
 //--------------------------
 
-//Entry
+//Setup:
+
 //Load database
-//Check for first boot
 
 //-----------------------------LOOP----------------------------//
-//Idle
-//If came from entry, go to interact for message
-//While idle, keep monitoring
+//check db for first boot of the day
+//go to interact for message
+//wait for user input
+//exit interacting state, go to monitoring state
 //Check if ignition key off
 //If ignition key off, interact with user, save logs and exit
 
 //Monitoring
+//get sample rate in Hz
+//set thresholds for alarms
+//while (monitoring)
+//run all monitoring functions
 //scan inputs
-//if any parameters off, go to interacting state
+//compare results to threshold values set by user
+//if any violations happen, flag violations and go to interacting state
 
 //Interacting
-//get parameters that are off
+//if came from boot, check boot and issue response
+//boolean camefromboot turns false so it doesn't run again for the session
+
+//get flags
 //choose response from database 
 //interact with user
-//go to idle state
+//go to monitoring state
+
+//Exit
+//Save session results
+//turn camefromboot to true so it can run through the greeting routine on next startup
+
 //-----------------------------LOOP----------------------------//
 
 #include <stdio.h>
@@ -123,9 +138,14 @@ void printTime(){
 	//check for EGT
 //}
 
+//EQUAL TO SETUP METHOD IN ARDUINO
+void setup(){
+  //stub, implement startup behaviour
+}
 
-int main(){
-//int main(int argc, char *argv[]){
+
+//EQUAL TO LOOP METHOD IN ARDUINO CODE
+int main(int argc, char *argv[]){
 	printf("%s\n", greeting);
 	checkTime();
 	printTime();

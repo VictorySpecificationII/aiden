@@ -9,3 +9,5 @@ Depending on the command, additional communication (usually in the form of quest
 
 Output is dependent on command/question, too many to list here.
 
+While Aiden is processing speech, the voice recognition software loop should be halted to avoid unexpected behaviour. Only once he answers back is the loop allowed to continue.
+
