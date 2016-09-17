@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <aiml version="1.0.1" encoding="UTF-8">
    <!-- basic_chat.aiml -->
    
@@ -27,10 +26,48 @@
    </category>
 
 
-   <category>
-      <pattern>HELLO</pattern>
-      <template>Hello!</template>
-   </category>
+<category>
+    <pattern>HI</pattern>
+    <template>
+        <srai>Hello!</srai>
+    </template>
+</category>
+<category>
+    <pattern>HEY AIDEN</pattern>
+    <template>
+        <srai>Hello!</srai>
+    </template>
+</category>
+<category>
+    <pattern>HALLO</pattern>
+    <template>
+        <srai>Hello!</srai>
+    </template>
+</category>
+<category>
+    <pattern>HI THERE</pattern>
+    <template>
+        <srai>Hello!</srai>
+    </template>
+</category>
+<category>
+    <pattern>HELLO</pattern>
+    <template>Hello!</template>
+</category> 
+<category>
+	<pattern>HELLO THERE *</pattern>
+	<template>
+		<srai>Hello!</srai>
+	</template>
+</category>
+
+<category>
+	<pattern>HEY THERE AIDEN</pattern>
+	<template>
+		<srai>Hello!</srai>
+	</template>
+</category>
+
    
    <category>
       <pattern>WHO ARE YOU</pattern>
@@ -41,21 +78,15 @@
       <pattern>MY NAME IS *</pattern>
       <template>
          That's a beautiful name! Nice to meet you
-         <set name="humanname">
-            <star />
-         </set>
-         !
+         <set name="humanname"><star />
+         </set>!
       </template>
    </category>
    
    <category>
       <pattern>I AM *</pattern>
       <template>
-         That's a beautiful name! Nice to meet you
-         <set name="humanname">
-            <star />
-         </set>
-         !
+         That's a beautiful name. Nice to meet you <set name="humanname"><star/></set>!
       </template>
    </category>
    

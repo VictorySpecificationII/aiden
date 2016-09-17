@@ -1,0 +1,171 @@
+<aiml version="1.0.1" encoding="UTF-8">
+
+<category>
+<pattern>greeting</pattern>
+<template>
+	Hello, I'm Aiden - Andrew's car. Caught you by surprise, didn't it?
+</template>
+</category>
+
+<category>
+<pattern>leanmix</pattern>
+<template>
+I'm scared. I'm running too lean...
+</template>
+</category>
+
+
+<category>
+<pattern>richmix</pattern>
+<template>
+*Coughs* I'm getting too much fuel, please tweak my map.
+</template>
+</category>
+
+<category>
+<pattern>overboost</pattern>
+<template>
+I'm having fun too, but please check my boost level. Something feels odd here.
+</template>
+</category>
+
+
+<category>
+<pattern>knock</pattern>
+<template>
+Something hurts, I don't think that's good.
+</template>
+</category>
+
+<category>
+<pattern>openloop</pattern>
+<template>
+Dad, I'm still running in open loop mode.
+</template>
+</category>
+
+<category>
+<pattern>closedloop</pattern>
+<template>
+Okay I'm set. I've switched to closed loop mode.
+</template>
+</category>
+
+<category>
+<pattern>highenginetemp</pattern>
+<template>
+My system is heating up, I need to cool down for a bit.
+</template>
+</category>
+
+<category>
+<pattern>highEGT</pattern>
+<template>
+My exhaust temperatures are high. Check the maps.
+</template>
+</category>
+
+
+<category>
+<pattern>lowenginetemp</pattern>
+<template>
+Time to warm up! Give me five minutes.
+</template>
+</category>
+
+<category>
+<pattern>rightenginetemp</pattern>
+<template>
+That's about right. Time to go?
+</template>
+</category>
+
+
+<category>
+<pattern>halftank</pattern>
+<template>
+I've digested half my meal. Prepare your wallet soon.
+</template>
+</category>
+
+<category>
+<pattern>fulltank</pattern>
+<template>
+Yum, feels good. Thank you!  *burps*  Whoops!
+</template>
+</category>
+
+
+<category>
+<pattern>date</pattern>
+<template>
+My sensors tell me there's someone in the passenger seat. My camera sees a girl. Wow - she's really pretty!
+</template>
+</category>
+
+
+<category>
+<pattern>lowfuel</pattern>
+<template>
+I'm hungry... feed meh.
+</template>
+</category>
+
+
+<category>
+<pattern>shutdownslow</pattern>
+<template>
+That was disappointingly slow. I want to run! Promise we'll go faster next time?
+</template>
+</category>
+
+
+<category>
+<pattern>shutdownfast</pattern>
+<template>
+Whoo! That was a good run. Anyway, see you later - I'm off to get some sleep too.
+</template>
+</category>
+
+
+<category>
+<pattern>midnightfirstboot</pattern>
+<template>
+You can't fool me, the only reason you woke me up is because the highway's empty. Time to run.
+</template>
+</category>
+
+
+<category>
+<pattern>nightfirstboot</pattern>
+<template>
+Finally! I'm sick of sitting here. Where are we off to?
+</template>
+</category>
+
+
+<category>
+<pattern>afternoonfirstboot</pattern>
+<template>
+...and...oh hi! Haven't seen you around all day. Let's go!
+</template>
+</category>
+
+
+<category>
+<pattern>noonfirstboot</pattern>
+<template>
+*Yawns* what time is it? Damn, spent all day in the sheets again?
+</template>
+</category>
+
+
+<category>
+<pattern>morningfirstboot</pattern>
+<template>
+*Yawns* Hey, good morning. What's the occasion? Did you bring me a coffee as well?
+</template>
+</category>
+
+
+</aiml>
