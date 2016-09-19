@@ -25,9 +25,9 @@ sessionData = kernel.getSessionData(sessionId)
 if os.path.isfile("aidens_brain.brn"):
     kernel.bootstrap(brainFile = "aidens_brain.brn")
 else:
-    kernel.bootstrap(learnFiles = "std-startup.xml", commands = "load aiml a")
-    kernel.bootstrap(learnFiles = "std-startup.xml", commands = "load aiml b")
-    kernel.saveBrain("aidens_brain.brn")
+    kernel.bootstrap(learnFiles = "std-startup.xml")
+    #kernel.saveBrain("aidens_brain.brn")
+    print "Dad, I can't load the .brn file - I can't find one. What should I do?"
 
 # kernel now ready for use
 while True:
@@ -40,6 +40,10 @@ while True:
         kernel.saveBrain("aidens_brain.brn")
     elif message == "clear":
     	os.system("clear")
+    elif message == "reset Aiden":
+    	os.system("rm aidens_brain.brn")
+    elif message == "reload xml":
+    	kernel.bootstrap(learnFiles = "std-startup.xml")
     else:
         bot_response = kernel.respond(message)
         print bot_response

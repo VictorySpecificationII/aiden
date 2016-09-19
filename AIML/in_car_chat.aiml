@@ -1,14 +1,12 @@
 <aiml version="1.0.1" encoding="UTF-8">
 
 <category>
-<pattern>greeting</pattern>
-<template>
-	Hello, I'm Aiden - Andrew's car. Caught you by surprise, didn't it?
-</template>
+	<pattern>GREETING</pattern>
+		<template>Hello, I'm Aiden - Andrew's car. Caught you by surprise, didn't it?</template>
 </category>
 
 <category>
-<pattern>leanmix</pattern>
+<pattern>RUNNINGLEAN</pattern>
 <template>
 I'm scared. I'm running too lean...
 </template>
@@ -16,14 +14,14 @@ I'm scared. I'm running too lean...
 
 
 <category>
-<pattern>richmix</pattern>
+<pattern>RUNNINGRICH</pattern>
 <template>
 *Coughs* I'm getting too much fuel, please tweak my map.
 </template>
 </category>
 
 <category>
-<pattern>overboost</pattern>
+<pattern>OVERBOOST</pattern>
 <template>
 I'm having fun too, but please check my boost level. Something feels odd here.
 </template>
@@ -31,35 +29,35 @@ I'm having fun too, but please check my boost level. Something feels odd here.
 
 
 <category>
-<pattern>knock</pattern>
+<pattern>KNOCK</pattern>
 <template>
 Something hurts, I don't think that's good.
 </template>
 </category>
 
 <category>
-<pattern>openloop</pattern>
+<pattern>OPENLOOP</pattern>
 <template>
 Dad, I'm still running in open loop mode.
 </template>
 </category>
 
 <category>
-<pattern>closedloop</pattern>
+<pattern>CLOSEDLOOP</pattern>
 <template>
 Okay I'm set. I've switched to closed loop mode.
 </template>
 </category>
 
 <category>
-<pattern>highenginetemp</pattern>
+<pattern>HIGHENGINETEMP</pattern>
 <template>
 My system is heating up, I need to cool down for a bit.
 </template>
 </category>
 
 <category>
-<pattern>highEGT</pattern>
+<pattern>HIGHEGT</pattern>
 <template>
 My exhaust temperatures are high. Check the maps.
 </template>
@@ -67,14 +65,14 @@ My exhaust temperatures are high. Check the maps.
 
 
 <category>
-<pattern>lowenginetemp</pattern>
+<pattern>LOWENGINETEMP</pattern>
 <template>
 Time to warm up! Give me five minutes.
 </template>
 </category>
 
 <category>
-<pattern>rightenginetemp</pattern>
+<pattern>RIGHTENGINETEMP</pattern>
 <template>
 That's about right. Time to go?
 </template>
@@ -82,14 +80,14 @@ That's about right. Time to go?
 
 
 <category>
-<pattern>halftank</pattern>
+<pattern>HALFTANK</pattern>
 <template>
 I've digested half my meal. Prepare your wallet soon.
 </template>
 </category>
 
 <category>
-<pattern>fulltank</pattern>
+<pattern>FULLTANK</pattern>
 <template>
 Yum, feels good. Thank you!  *burps*  Whoops!
 </template>
@@ -97,7 +95,7 @@ Yum, feels good. Thank you!  *burps*  Whoops!
 
 
 <category>
-<pattern>date</pattern>
+<pattern>DATE</pattern>
 <template>
 My sensors tell me there's someone in the passenger seat. My camera sees a girl. Wow - she's really pretty!
 </template>
@@ -105,7 +103,7 @@ My sensors tell me there's someone in the passenger seat. My camera sees a girl.
 
 
 <category>
-<pattern>lowfuel</pattern>
+<pattern>LOWFUEL</pattern>
 <template>
 I'm hungry... feed meh.
 </template>
@@ -113,7 +111,7 @@ I'm hungry... feed meh.
 
 
 <category>
-<pattern>shutdownslow</pattern>
+<pattern>SHUTDOWNSLOW</pattern>
 <template>
 That was disappointingly slow. I want to run! Promise we'll go faster next time?
 </template>
@@ -121,7 +119,7 @@ That was disappointingly slow. I want to run! Promise we'll go faster next time?
 
 
 <category>
-<pattern>shutdownfast</pattern>
+<pattern>SHUTDOWNFAST</pattern>
 <template>
 Whoo! That was a good run. Anyway, see you later - I'm off to get some sleep too.
 </template>
@@ -129,7 +127,7 @@ Whoo! That was a good run. Anyway, see you later - I'm off to get some sleep too
 
 
 <category>
-<pattern>midnightfirstboot</pattern>
+<pattern>MIDNIGHTFIRSTBOOT</pattern>
 <template>
 You can't fool me, the only reason you woke me up is because the highway's empty. Time to run.
 </template>
@@ -137,7 +135,7 @@ You can't fool me, the only reason you woke me up is because the highway's empty
 
 
 <category>
-<pattern>nightfirstboot</pattern>
+<pattern>NIGHTFIRSTBOOT</pattern>
 <template>
 Finally! I'm sick of sitting here. Where are we off to?
 </template>
@@ -145,7 +143,7 @@ Finally! I'm sick of sitting here. Where are we off to?
 
 
 <category>
-<pattern>afternoonfirstboot</pattern>
+<pattern>AFTERNOONFIRSTBOOT</pattern>
 <template>
 ...and...oh hi! Haven't seen you around all day. Let's go!
 </template>
@@ -153,7 +151,7 @@ Finally! I'm sick of sitting here. Where are we off to?
 
 
 <category>
-<pattern>noonfirstboot</pattern>
+<pattern>NOONFIRSTBOOT</pattern>
 <template>
 *Yawns* what time is it? Damn, spent all day in the sheets again?
 </template>
@@ -161,7 +159,7 @@ Finally! I'm sick of sitting here. Where are we off to?
 
 
 <category>
-<pattern>morningfirstboot</pattern>
+<pattern>MORNINGFIRSTBOOT</pattern>
 <template>
 *Yawns* Hey, good morning. What's the occasion? Did you bring me a coffee as well?
 </template>

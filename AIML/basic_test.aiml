@@ -1,0 +1,13 @@
+<aiml version="1.0.1" encoding="UTF-8">
+
+<category>
+	<pattern>AIDEN ARE YOU OK</pattern>
+		<template>I'm fine dad don't worry :)</template>
+</category>
+
+<category>
+	<pattern>GREETING</pattern>
+		<template>Hello, I'm Aiden - Andrew's car. Caught you by surprise, didn't it?</template>
+</category>
+
+</aiml>
